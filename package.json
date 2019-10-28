@@ -8,12 +8,6 @@
       "android"
     ]
   },
-  "repository": {
-    "url": "git@github.com:RoboFinance/CordovaPushDelivery.git"
-  },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
-  },
   "keywords": [
     "ecosystem:cordova",
     "cordova-android"
