@@ -8,9 +8,6 @@
       "android"
     ]
   },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
-  },
   "repository": {
     "url": "git@github.com:RoboFinance/CordovaPushDelivery.git"
   },
