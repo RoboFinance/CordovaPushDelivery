@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.0.0]
+    - change method to POST
+
 ## [1.1.2]
     - update readme.md
 

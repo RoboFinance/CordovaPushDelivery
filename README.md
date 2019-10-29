@@ -17,7 +17,7 @@ Kindly append `delivery_url` parameter to firebase `data`
 ```json
 {
 	"data" : {
-    	"delivery_url": "http://localhost/set-read/886d27ee-f6fd-11e9-832d-362b9e155667"
+        "delivery_url": "http://localhost/set-read/886d27ee-f6fd-11e9-832d-362b9e155667"
     }
 }
 ```
