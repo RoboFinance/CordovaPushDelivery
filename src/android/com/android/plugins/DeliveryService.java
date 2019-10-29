@@ -31,6 +31,7 @@ public class DeliveryService extends FCMService {
       try {
         URL url = new URL(message.getData().get(key));
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        urlConnection.setRequestMethod("POST");
         out = new BufferedOutputStream(urlConnection.getOutputStream());
 
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
