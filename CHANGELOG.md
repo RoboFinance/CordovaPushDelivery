@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.2]
+    - update readme.md
+
 ## [1.1.1]
     - add repository to package.json
     
