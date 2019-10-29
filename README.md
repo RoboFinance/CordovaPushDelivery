@@ -3,6 +3,7 @@
 A plugin that overrides the ```onMessageReceived()``` method of the `phonegap-plugin-push` package.
 It introduces a possibility to detect if push is received in foreground / background and sends a fallback GET request.
 
+**Only Android support right now.**
 #### How to install
 ```
 cordova plugin add "@robo-finance/cordova-push-delivery"
