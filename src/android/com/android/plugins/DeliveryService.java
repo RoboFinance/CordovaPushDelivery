@@ -8,29 +8,37 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
+import java.lang.reflect.Method;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import id.co.reliancerobopds.mobile.BuildConfig;
 
 import com.adobe.phonegap.push.FCMService;
 
 @SuppressLint("NewApi")
 public class DeliveryService extends FCMService {
+  private static final String CONTEXT = "PushDeliveryPlugin";
+
   @Override
   public void onMessageReceived(RemoteMessage message) {
-    Log.d("DeliveryPlugin", "received");
-
+    Log.d(CONTEXT, "onMessageReceived");
+    if (BuildConfig.DEBUG) {
+      Log.d(CONTEXT, "trust all in debug mode");
+      DeliveryService.initTrustManager();
+    }
     super.onMessageReceived(message);
 
     String key = "delivery_url";
 
     if (message.getData().containsKey(key)) {
-      Log.d("DeliveryPlugin", "containsKey - true");
-
       OutputStream out = null;
-
       try {
         URL url = new URL(message.getData().get(key));
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
         urlConnection.setRequestMethod("POST");
         out = new BufferedOutputStream(urlConnection.getOutputStream());
 
@@ -38,13 +46,35 @@ public class DeliveryService extends FCMService {
         writer.flush();
         writer.close();
         out.close();
-
         urlConnection.connect();
+        Log.d(CONTEXT, urlConnection.getResponseMessage());
       } catch (Exception e) {
-        Log.e("DeliveryPlugin", e.getMessage());
+        Log.e(CONTEXT, e.getMessage());
+      }
+    }
+  }
+
+  private static void initTrustManager() {
+    // Create a trust manager that does not validate certificate chains
+    TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+      public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+        return null;
       }
 
-    }
+      public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+      }
 
+      public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+      }
+    } };
+
+    // Install the all-trusting trust manager
+    try {
+      SSLContext sc = SSLContext.getInstance("SSL");
+      sc.init(null, trustAllCerts, new java.security.SecureRandom());
+      HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+    } catch (Exception e) {
+      Log.e(CONTEXT, e.getMessage());
+    }
   }
 }

@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.1.0]
+    - Trust all ssl certs in debug builds
+
 ## [2.0.0]
     - change method to POST
 
