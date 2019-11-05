@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.2.0]
+    - Send request only if push notifications are enabled
+
 ## [2.1.0]
     - Trust all ssl certs in debug builds
 

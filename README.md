@@ -1,7 +1,7 @@
 #### Description
 
 A plugin that overrides the ```onMessageReceived()``` method of the `phonegap-plugin-push` package.
-It introduces a possibility to detect if push is received in foreground / background and sends a fallback **POST** request.
+It introduces a possibility to detect if notifications are enabled and push is received in foreground / background and sends a fallback **POST** request.
 
 **Only Android support right now.**
 #### How to install
