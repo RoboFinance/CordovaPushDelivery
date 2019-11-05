@@ -3,6 +3,8 @@ package com.android.plugins;
 import com.google.firebase.messaging.RemoteMessage;
 import android.annotation.SuppressLint;
 import android.util.Log;
+import android.app.NotificationManager;
+import android.content.Context;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -34,7 +36,10 @@ public class DeliveryService extends FCMService {
 
     String key = "delivery_url";
 
-    if (message.getData().containsKey(key)) {
+    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+    if (message.getData().containsKey(key) && notificationManager.areNotificationsEnabled()) {
+      Log.d(CONTEXT, "Notification has `delivery_url` and notifications are enabled");
       OutputStream out = null;
       try {
         URL url = new URL(message.getData().get(key));
