@@ -1,6 +1,6 @@
 {
   "name": "@robo-finance/cordova-push-delivery",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "This plugin allows your application to receive push notifications on Android, iOS and Windows devices.    Android uses Firebase Cloud Messaging.    iOS uses Apple APNS Notifications.    Windows uses Microsoft WNS Notifications.  ",
   "cordova": {
     "id": "cordova-push-delivery",

@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.3.0]
+    - Fix crash if function areNotificationsEnabled not exists
+    
 ## [2.2.0]
     - Send request only if push notifications are enabled
 
