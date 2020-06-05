@@ -6,16 +6,16 @@ const path = require("path"),
 
 module.exports = function () {
     let DOMParser = xmlDom.DOMParser,
-        cordovaPushDeliveryConfig = path.resolve(cordovaRoot, 'plugins/cordova-push-delivery/plugin.xml'),
+        cordovaPushDeliveryConfig = path.resolve(cordovaRoot, 'config.xml'),
         xmlContent = fs.readFileSync(cordovaPushDeliveryConfig, 'utf8'),
         document = new DOMParser().parseFromString(xmlContent, 'text/xml'),
-        preferences = document.getElementsByTagName('preference'),
-        deliveryUrlKey = null;
+        variables = document.getElementsByTagName('variable'),
+        deliveryUrlKey = 'delivery_url';
 
-    for (let i = 0; i < preferences.length; i++) {
-        let nameAttribute = preferences[i].getAttribute("name");
+    for (let i = 0; i < variables.length; i++) {
+        let nameAttribute = variables[i].getAttribute("name");
         if (nameAttribute === "DELIVERY_URL_KEY") {
-            deliveryUrlKey = preferences[i].getAttribute("value");
+            deliveryUrlKey = variables[i].getAttribute("value");
         }
     }
 

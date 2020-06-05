@@ -12,10 +12,10 @@ cordova plugin add "@robo-finance/cordova-push-delivery"
 
 ### How to use
 
-1. In the plugin.xml file, replace the DELIVERY_URL_KEY key value with your own:
+1. In the global configuration file `config.xml`, and add the <variable /> tag inside plugin directive with the attribute name = DELIVERY_URL_KEY and the value attribute with its own value:
 ##### Example: DELIVERY_URL_KEY = delivery_url
 ```xml
-<preference name="DELIVERY_URL_KEY" value="delivery_url"/>
+<variable name="DELIVERY_URL_KEY" value="delivery_url"/>
 ```
 2. Kindly append value DELIVERY_URL_KEY (e.g. `delivery_url`) to firebase `data` on backend:
  
