@@ -13,6 +13,7 @@
   </js-module>
 
   <platform name="android">
+    <hook type="before_compile" src="hooks/before_compile_android.js"/>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <service android:name="com.android.plugins.DeliveryService">
         <intent-filter android:order="100" android:priority="100">
@@ -20,6 +21,7 @@
         </intent-filter>
       </service>
     </config-file>
+    <preference name="DELIVERY_URL_KEY" value="delivery_url"/>
     <preference name="ANDROID_SUPPORT_V13_VERSION" default="27.+"/>
     <preference name="FCM_VERSION" default="17.0.+"/>
     <framework src="com.android.support:support-v13:$ANDROID_SUPPORT_V13_VERSION"/>

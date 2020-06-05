@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.4.0]
+    - Added hook before_compile_android to replace the standard delivery_url key
+    - Added xmldom dependency in package.json
+    - Added preference tag DELIVERY_URL_KEY in plugin.xml
+
 ## [2.3.0]
     - Fix crash if function areNotificationsEnabled not exists
     

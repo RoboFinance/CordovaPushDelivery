@@ -8,6 +8,9 @@
       "android"
     ]
   },
+  "dependencies": {
+    "xmldom": "^0.1.27"
+  },
   "repository": {
     "url": "git@github.com:RoboFinance/CordovaPushDelivery.git"
   },
