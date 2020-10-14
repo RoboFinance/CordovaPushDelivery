@@ -18,10 +18,11 @@ module.exports = function () {
             deliveryUrlKey = variables[i].getAttribute("value");
         }
     }
-
+    let widget = document.getElementsByTagName('widget')[0].getAttribute('id');
     let deliveryService = fs.readFileSync(DELIVERY_SERVICE_PATH).toString();
     deliveryService = deliveryService
         .replace(new RegExp('\key = "(.+?)\"'), 'key = "' + deliveryUrlKey + '"')
-        .replace(new RegExp('\has `(.+?)\`'), 'has `' + deliveryUrlKey + '`');
+        .replace(new RegExp('\has `(.+?)\`'), 'has `' + deliveryUrlKey + '`')
+        .replace('%PACKAGE%', widget);
     fs.writeFileSync(DELIVERY_SERVICE_PATH, deliveryService, 'utf8');
 };

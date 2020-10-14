@@ -18,7 +18,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import id.co.reliancerobopds.mobile.BuildConfig;
+import %PACKAGE%.BuildConfig;
 
 import com.adobe.phonegap.push.FCMService;
 
