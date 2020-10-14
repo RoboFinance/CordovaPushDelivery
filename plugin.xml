@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-  id="cordova-push-delivery" version="2.4.0">
+  id="cordova-push-delivery" version="2.5.1">
   <name>Push delivery plugin</name>
   <description>The plugin introduces a possibility to detect if push is received in foreground / background and sends a fallback GET request</description>
   <license>MIT</license>

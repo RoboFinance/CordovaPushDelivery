@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.5.1]
+    - Dynamical change package name
+
 ## [2.4.0]
     - Added hook before_compile_android to replace the standard delivery_url key
     - Added xmldom dependency in package.json
