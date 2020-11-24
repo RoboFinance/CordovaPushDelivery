@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.util.Log;
 import android.app.NotificationManager;
+import android.app.NotificationChannel;
 import android.content.Context;
 
 import java.io.BufferedOutputStream;
@@ -13,6 +14,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -40,8 +42,23 @@ public class DeliveryService extends FCMService {
     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
     boolean notificationsEnabled = Build.VERSION.SDK_INT < Build.VERSION_CODES.N || notificationManager.areNotificationsEnabled();
+    // Check if channel if enabled
+    if (notificationsEnabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          NotificationManager manager = getSystemService(NotificationManager.class);
+          List<NotificationChannel> channels = manager.getNotificationChannels();
+          String channelID = DEFAULT_CHANNEL_ID;
+          if (channels.size() == 1) {
+            channelID = channels.get(0).getId();
+          }
+          NotificationChannel channel = manager.getNotificationChannel(channelID);
+
+          notificationsEnabled = channel != null && channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
+          if (!notificationsEnabled) {
+            Log.d(CONTEXT, "Notification channel " + channelID + " is disabled");
+          }
+    }
     if (message.getData().containsKey(key) && notificationsEnabled) {
-      Log.d(CONTEXT, "Notification has `delivery_url` and notifications are enabled");
+      Log.d(CONTEXT, "Notification has `finance.robo.notification_delivery_url` and notifications are enabled");
       OutputStream out = null;
       try {
         URL url = new URL(message.getData().get(key));
